@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prediction of the age of an Orange Tree by its circumference</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Prediction of the age of an Orange Tree by its circumference">
+  <meta name="author" content="steph-d">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/polycharts/js/polychart2.standalone.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Prediction of the age of an Orange Tree by its circumference</h1>
+    <h2>Secret of Nature</h2>
+    <p>steph-d<br/>Researcher</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>When you observe a tree, a frequent question coming to mind is:</h3>
+
+<h3>&quot;how old is it?&quot;</h3>
+
+<p>Sure, everybody knows that a good way to answer this question is to cut down the tree and to count the number of rings .... But how to estimate the age without killing the tree??????</p>
+
+<p>We know that a lot of factors influence the growth of the trees: climatic, environmental, disponibility in nutriments ... Nevertheless, we will study here a dataset about Orange trees (&quot;Orange&quot;, in datasets package) and how their circumference evolves with time. From this relation, an application was elaborated in order to estimate the age of the trees.</p>
+
+<p>Let&#39;s have a look!</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class1" id="id1" style="background:white;">
+  <hgroup>
+    <h2>Dataset</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The Orange dataset contains the circumference (mm) for 7 ages (days) of 5 orange trees. Let&#39;s do a plot:<br>
+<img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+<pre><code>FALSE Error in eval(expr, envir, enclos): tentative d&#39;appliquer un objet qui n&#39;est pas une fonction
+</code></pre>
+
+<iframe src="r1.html" width=80%, height=600></iframe>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Regression</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>We can link the circumference of the tree and its age by a regression:</p>
+
+<pre><code class="r"># calcul for the mean of the circumference between the trees
+x &lt;- unique(Orange$age)
+y &lt;- numeric()
+for(i in 1:7){y &lt;- c(y, mean(Orange$circumference[Orange$age==x[i]]))}
+
+# regression model for calcultaing the circumference, giving the age
+reg &lt;- nls(y~SSlogis(x, Asym, xmid, scal))
+
+# regression model for calculating the age, giving the circumference
+reg2 &lt;- nls(x~SSlogis(y, Asym, xmid, scal))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Interactive result of the regression</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src="m1.html" width=100%, height=600></iframe>
+
+<p>Please, have a look to the ShinyApp: 
+<a href="https://steph-d.shinyapps.io/shinyappProject">https://steph-d.shinyapps.io/shinyappProject</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Dataset'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Regression'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Interactive result of the regression'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
