@@ -31,13 +31,7 @@ Let's have a look!
 ## Dataset
 
 The Orange dataset contains the circumference (mm) for 7 ages (days) of 5 orange trees. Let's do a plot:   
-![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) 
-
-```
-FALSE Error in eval(expr, envir, enclos): tentative d'appliquer un objet qui n'est pas une fonction
-```
-
-<iframe src="r1.html" width=80%, height=600></iframe>
+![plot of chunk unnamed-chunk-1](assets/fig/unnamed-chunk-1-1.png) NULL
 
 --- .class #id
 
@@ -61,9 +55,9 @@ reg2 <- nls(x~SSlogis(y, Asym, xmid, scal))
 
 --- .class #id
 
-## Interactive result of the regression
+## Result of the regression
 
-<iframe src="m1.html" width=100%, height=600></iframe>
+![plot of chunk unnamed-chunk-3](assets/fig/unnamed-chunk-3-1.png) NULL
 
 Please, have a look to the ShinyApp: 
 https://steph-d.shinyapps.io/shinyappProject

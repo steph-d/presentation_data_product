@@ -40,10 +40,11 @@ r1 <- plot(circumference~age, col=Tree, data=Orange, xlab="Age (days)", ylab="Ci
 #r1 <- rPlot(circumference~age, color='Tree', data=Orange, type="point")
 #r1$show("iframesrc")
 #r1$show(include_assets=TRUE, cdn = TRUE)
-r1$save("r1.html", cdn=TRUE)
-cat('<iframe src="r1.html" width=80%, height=600></iframe>')
+#r1$save("r1.html", cdn=TRUE)
+#cat('<iframe src="r1.html" width=80%, height=600></iframe>')
 #print(r1, tag='html', file='r1.html')
 #cat("<iframe src='r1.html'></iframe>")
+r1
 ```
 
 --- .class #id
@@ -68,18 +69,20 @@ reg2 <- nls(x~SSlogis(y, Asym, xmid, scal))
 
 --- .class #id
 
-## Interactive result of the regression
+## Result of the regression
 
-```{r, echo=FALSE, comment=NA, message=FALSE, results='asis'}
+```{r, echo=FALSE, comment=FALSE, message=FALSE, results='asis'}
 age <- seq(0, 1600, length.out = 101)
 datafin <- as.data.frame(cbind(age, predict(reg, list(x = age))))
 colnames(datafin) <- c("Age", "Circumference")
-m1 <- rPlot(Circumference~Age, type='point', data=datafin)
-m1$set(pointSize=0, lineWidth=1)
-m1$save('m1.html', cdn=TRUE)
+#m1 <- rPlot(Circumference~Age, type='point', data=datafin)
+m1 <- plot(Circumference~Age, data=datafin, type="l", col="red", xlab="Age (days)", ylab="Circumference (mm)", lwd=5)
+#m1$set(pointSize=0, lineWidth=1)
+#m1$save('m1.html', cdn=TRUE)
 #m1$print('iframesrc', cdn=TRUE, include_assets=TRUE)
-cat('<iframe src="m1.html" width=100%, height=600></iframe>')
+#cat('<iframe src="m1.html" width=100%, height=600></iframe>')
 #cat('<iframesrc width=80%, height=600></iframe>')
+print(m1)
 ```
 
 Please, have a look to the ShinyApp: 
